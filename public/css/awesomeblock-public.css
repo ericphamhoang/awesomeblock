@@ -2,3 +2,11 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+.awesome-block-edit {
+    color: white;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+
+}

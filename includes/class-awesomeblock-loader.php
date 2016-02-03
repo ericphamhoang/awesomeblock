@@ -124,6 +124,11 @@ class Awesomeblock_Loader {
 			add_action( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
 		}
 
+		$public = new Awesomeblock_Public();
+
+		$public->init_custom_post_type_block();
+
+		$public->add_block_shortcode();
 	}
 
 }
