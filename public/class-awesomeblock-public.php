@@ -158,13 +158,15 @@ class Awesomeblock_Public
         add_shortcode('awesome-block', function ($atts, $content) {
             ob_start();
 
+            update_option('awesome-block-'.$atts['id'], $_SERVER['REQUEST_URI']);
+
             $post = get_post($atts['id']);
 
             echo apply_filters('the_content', $post->post_content);
 
             if (current_user_can("manage_options")) {
                 ?>
-                <a class="awesome-block-edit" href="/wp-admin/post.php?post=<?php echo $post->ID ?>&action=edit">Edit Block</a>
+                <a class="awesome-block-edit" target="_blank" href="/wp-admin/post.php?post=<?php echo $post->ID ?>&action=edit">Edit Block</a>
                 <?php
             }
 
