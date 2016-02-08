@@ -172,6 +172,7 @@ class Awesomeblock_Public
 
             return ob_get_clean();
         });
+        add_filter( 'widget_text', 'do_shortcode' );
     }
 
 }
