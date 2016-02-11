@@ -129,6 +129,7 @@ class Awesomeblock_Loader {
 		$public->init_custom_post_type_block();
 
 		$public->add_block_shortcode();
+		$public->allow_span_tags();
 	}
 
 }
