@@ -9,6 +9,6 @@
     background: rgba(0, 0, 0, 0.5);
     padding: 10px;
     position: absolute;
+    display: block;
     left: 45%;
-    right: 45%;
 }
