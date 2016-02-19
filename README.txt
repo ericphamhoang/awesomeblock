@@ -12,10 +12,7 @@ Here is a short description of the plugin.  This should be no more than 150 char
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
-
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Use this shortcode [awesome-block id="<post_id>"]
 
 A few notes about the sections above:
 
