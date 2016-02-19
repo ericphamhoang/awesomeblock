@@ -119,7 +119,7 @@ class Awesomeblock_Public
                 'show_ui' => true,
                 'taxonomies' => array('block-category'),
                 'show_in_nav_menus' => true,
-                'menu_position' => 26,
+                'menu_position' => 100,
                 'menu_icon' => 'dashicons-editor-bold',
                 'supports' => array(
                     'title', 'editor', 'thumbnail', 'revisions', 'taxonomy'
@@ -173,5 +173,25 @@ class Awesomeblock_Public
             return ob_get_clean();
         });
         add_filter( 'widget_text', 'do_shortcode' );
+    }
+
+    public function allow_span_tags()
+    {
+        function myextensionTinyMCE($init) {
+            // Command separated string of extended elements
+            $ext = 'span[id|name|class|style]';
+
+            // Add to extended_valid_elements if it alreay exists
+            if ( isset( $init['extended_valid_elements'] ) ) {
+                $init['extended_valid_elements'] .= ',' . $ext;
+            } else {
+                $init['extended_valid_elements'] = $ext;
+            }
+
+            // Super important: return $init!
+            return $init;
+        }
+
+        add_filter('tiny_mce_before_init', 'myextensionTinyMCE' );
     }
 }
