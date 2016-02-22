@@ -4,11 +4,10 @@
  */
 
 .awesome-block-edit {
-    color: white;
+    color: #fff !important;
     text-decoration: none;
     background: rgba(0, 0, 0, 0.5);
-    padding: 10px;
+    padding: 10px !important;
     position: absolute;
-    display: block;
-    left: 45%;
+    display: block !important;
 }
