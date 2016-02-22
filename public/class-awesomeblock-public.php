@@ -194,5 +194,4 @@ class Awesomeblock_Public
 
         add_filter('tiny_mce_before_init', 'myextensionTinyMCE' );
     }
-
 }
