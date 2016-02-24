@@ -102,6 +102,9 @@ class Awesomeblock_Public
 
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/awesomeblock-public.js', array('jquery'), $this->version, false);
 
+        //TODO: enqueue font awesome
+        wp_enqueue_style('ab-font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', array(), $this->version, false);
+
     }
 
     public function init_custom_post_type_block()
@@ -115,7 +118,6 @@ class Awesomeblock_Public
                     'menu_name' => 'Blocks',
                     'name_admin_bar' => 'Blocks'
                 ),
-                'public' => true,
                 'show_ui' => true,
                 'taxonomies' => array('block-category'),
                 'show_in_nav_menus' => true,
@@ -127,29 +129,29 @@ class Awesomeblock_Public
             ));
 
             $labels = array(
-                'name'              => _x( 'Block Categories', 'taxonomy general name' ),
-                'singular_name'     => _x( 'Block Category', 'taxonomy singular name' ),
-                'search_items'      => __( 'Search Block Category' ),
-                'all_items'         => __( 'All Block Categories' ),
-                'parent_item'       => __( 'Parent Block Category' ),
-                'parent_item_colon' => __( 'Parent Block Category:' ),
-                'edit_item'         => __( 'Edit Block Category' ),
-                'update_item'       => __( 'Update Block Category' ),
-                'add_new_item'      => __( 'Add New Block Category' ),
-                'new_item_name'     => __( 'New Block Category Name' ),
-                'menu_name'         => __( 'Block Categories' ),
+                'name' => _x('Block Categories', 'taxonomy general name'),
+                'singular_name' => _x('Block Category', 'taxonomy singular name'),
+                'search_items' => __('Search Block Category'),
+                'all_items' => __('All Block Categories'),
+                'parent_item' => __('Parent Block Category'),
+                'parent_item_colon' => __('Parent Block Category:'),
+                'edit_item' => __('Edit Block Category'),
+                'update_item' => __('Update Block Category'),
+                'add_new_item' => __('Add New Block Category'),
+                'new_item_name' => __('New Block Category Name'),
+                'menu_name' => __('Block Categories'),
             );
 
             $args = array(
-                'hierarchical'      => true,
-                'labels'            => $labels,
-                'show_ui'           => true,
+                'hierarchical' => true,
+                'labels' => $labels,
+                'show_ui' => true,
                 'show_admin_column' => true,
-                'query_var'         => true,
-                'rewrite'           => array( 'slug' => 'genre' ),
+                'query_var' => true,
+                'rewrite' => array('slug' => 'genre'),
             );
 
-            register_taxonomy( 'block-category', array('blocks'), $args);
+            register_taxonomy('block-category', array('blocks'), $args);
         });
     }
 
@@ -158,7 +160,7 @@ class Awesomeblock_Public
         add_shortcode('awesome-block', function ($atts, $content) {
             ob_start();
 
-            update_option('awesome-block-'.$atts['id'], $_SERVER['REQUEST_URI']);
+            update_option('awesome-block-' . $atts['id'], $_SERVER['REQUEST_URI']);
 
             $post = get_post($atts['id']);
 
@@ -166,23 +168,25 @@ class Awesomeblock_Public
 
             if (current_user_can("manage_options")) {
                 ?>
-                <a class="awesome-block-edit" target="_blank" href="/wp-admin/post.php?post=<?php echo $post->ID ?>&action=edit">Edit Block</a>
+                <a class="awesome-block-edit" target="_blank" alt="Edit Block"
+                   href="/wp-admin/post.php?post=<?php echo $post->ID ?>&action=edit"><i class="fa fa-pencil-square-o"></i></a>
                 <?php
             }
 
             return ob_get_clean();
         });
-        add_filter( 'widget_text', 'do_shortcode' );
+        add_filter('widget_text', 'do_shortcode');
     }
 
     public function allow_span_tags()
     {
-        function myextensionTinyMCE($init) {
+        function myextensionTinyMCE($init)
+        {
             // Command separated string of extended elements
             $ext = 'span[id|name|class|style]';
 
             // Add to extended_valid_elements if it alreay exists
-            if ( isset( $init['extended_valid_elements'] ) ) {
+            if (isset($init['extended_valid_elements'])) {
                 $init['extended_valid_elements'] .= ',' . $ext;
             } else {
                 $init['extended_valid_elements'] = $ext;
@@ -192,6 +196,6 @@ class Awesomeblock_Public
             return $init;
         }
 
-        add_filter('tiny_mce_before_init', 'myextensionTinyMCE' );
+        add_filter('tiny_mce_before_init', 'myextensionTinyMCE');
     }
 }

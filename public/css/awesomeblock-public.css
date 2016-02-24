@@ -6,8 +6,23 @@
 .awesome-block-edit {
     color: #fff !important;
     text-decoration: none;
-    background: rgba(0, 0, 0, 0.5);
     padding: 10px !important;
     position: absolute;
     display: block !important;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.awesome-block-edit:after
+{
+    opacity: 0;
+    content: 'Edit Block';
+    text-indent: 5px;
+    display: none;
+}
+
+.awesome-block-edit:hover:after
+{
+    opacity: 1;
+    display: inline-block;
 }
