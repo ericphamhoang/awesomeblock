@@ -3,6 +3,11 @@
  * included in this file.
  */
 
+.awesome-block-wrapper
+{
+    position: relative;
+}
+
 .awesome-block-edit {
     color: #fff !important;
     text-decoration: none;
@@ -11,6 +16,8 @@
     display: block !important;
     border-radius: 3px;
     background: rgba(0, 0, 0, 0.5);
+    top:0;
+    right: 0;
 }
 
 .awesome-block-edit:after

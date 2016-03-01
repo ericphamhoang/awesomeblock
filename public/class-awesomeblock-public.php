@@ -164,15 +164,21 @@ class Awesomeblock_Public
 
             $post = get_post($atts['id']);
 
-            echo apply_filters('the_content', $post->post_content);
+            ?>
+            <div class="awesome-block-wrapper">
+                <?php echo apply_filters('the_content', $post->post_content);
 
-            if (current_user_can("manage_options")) {
+                if (current_user_can("manage_options")) {
+                    ?>
+                    <a class="awesome-block-edit" target="_blank" alt="Edit Block"
+                       href="/wp-admin/post.php?post=<?php echo $post->ID ?>&action=edit"><i
+                            class="fa fa-pencil-square-o"></i></a>
+                    <?php
+                }
+
                 ?>
-                <a class="awesome-block-edit" target="_blank" alt="Edit Block"
-                   href="/wp-admin/post.php?post=<?php echo $post->ID ?>&action=edit"><i class="fa fa-pencil-square-o"></i></a>
-                <?php
-            }
-
+            </div>
+            <?php
             return ob_get_clean();
         });
         add_filter('widget_text', 'do_shortcode');
